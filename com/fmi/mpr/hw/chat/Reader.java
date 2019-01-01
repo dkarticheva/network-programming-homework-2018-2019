@@ -26,7 +26,7 @@ public class Reader implements Runnable {
 
     @Override
     public void run() {
-        boolean chatting = true; 
+        //boolean chatting = true; 
         while (participant.chatting) {
 
             byte[] buff = new byte[BUFFER_SIZE];
@@ -53,13 +53,9 @@ public class Reader implements Runnable {
                     }
                 }
             } catch (SocketException e) {
-                System.out.println("Farewell!");
+                System.out.println("You have successfully logged out!");
             } catch (IOException e) {
                 e.printStackTrace();
-                
-                // TODO Auto-generated catch block
-                //e.printStackTrace();
-                // print "bye bye"
             }
         }
     }
