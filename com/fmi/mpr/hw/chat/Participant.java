@@ -3,6 +3,7 @@ package com.fmi.mpr.hw.chat;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.DatagramPacket;
@@ -74,7 +75,10 @@ public class Participant {
                 fis.close();
                 socket.send(new DatagramPacket(new String("END").getBytes(), 3, address, port));
                 
-            } catch (IOException e) {
+            } catch(FileNotFoundException ex) {
+        	    System.out.println("Please enter existing file");
+            }
+            catch (IOException e) {
                 System.out.println("Problem while sending the message");
                 e.printStackTrace();
             }
