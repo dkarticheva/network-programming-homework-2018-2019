@@ -24,6 +24,15 @@ public class Reader implements Runnable {
         address = adr;
     }
 
+    private String getMessage(String line) {
+    	int j;
+    	for(j=0; j<line.length(); j++) {
+    		if (line.charAt(j) == ':') {
+    			break;
+    		}
+    	}
+    	return line.substring(j+2, line.length());
+    }
     @Override
     public void run() {
         //boolean chatting = true; 
@@ -37,7 +46,7 @@ public class Reader implements Runnable {
                 String message = new String(packet.getData(), packet.getOffset(), packet.getLength());
                 String[] mess = message.split(" ");
                 if (mess[0].equals("TEXT")) {
-                    System.out.println("The message you sent was: " + mess[2]);
+                    System.out.println("You have received message: " + getMessage(message));
                     System.out.println("You can enter another TEXT,IMAGE or VIDEO message: ");
                 }
                 else if (mess[0].equals("IMAGE") || mess[0].equals("VIDEO")) {
